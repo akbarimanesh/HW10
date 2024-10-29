@@ -13,9 +13,9 @@ while (true)
     Console.Clear();
     ColoredConsole.Write($"{Blue("Enter Command :")}");
     string command = Console.ReadLine();
-    var section = command.Split(" ");
+    var section = command.ToUpper().Split(" ");
     var com = section[0];
-    if (com == "login")
+    if (com == "LOGIN")
     {
         try
         {
@@ -31,7 +31,7 @@ while (true)
         
         Console.ReadKey();
     }
-    if (com == "register")
+    if (com == "REGISTER")
     {
         try
         {
@@ -50,11 +50,11 @@ while (true)
         Console.ReadKey();
     }
 
-    if (com == "change")
+    if (com == "CHANGE")
     {
         try
         {
-            if (section[2] == "available")
+            if (section[2] == "AVAILABLE")
             {
 
                 userService.Statususer(user, section[2]);
@@ -62,7 +62,7 @@ while (true)
 
                 
             }
-            else if (section[2] == "notavailable")
+            else if (section[2] == "NOTAVAILABLE")
             {
 
                 userService.Statususer(user, section[2]);
@@ -77,7 +77,7 @@ while (true)
 
         Console.ReadKey();
     }
-    if (com == "search")
+    if (com == "SEARCH")
     {
         try
         {
@@ -93,7 +93,7 @@ while (true)
         }
         Console.ReadKey();
     }
-    if (com == "changepassword")
+    if (com == "CHANGEPASSWORD")
     {
         try
         {
@@ -109,7 +109,7 @@ while (true)
         }
         Console.ReadKey();
     }
-    if (com == "logout")
+    if (com == "LOGOUT")
     {
         try
         {

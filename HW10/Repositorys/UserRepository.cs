@@ -156,7 +156,7 @@ namespace HW10.Repositorys
             if (CurrentUser != null)
             {
                 CurrentUser = users.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
-                if (sta == "available")
+                if (sta == "AVAILABLE")
                 {
                    
                     CurrentUser.Status = true;
@@ -164,7 +164,7 @@ namespace HW10.Repositorys
                     File.WriteAllText(path, result + Environment.NewLine);
                     ColoredConsole.WriteLine($"{Green("Username")} {Green(user.Username)} {Green("set available")}");
                 }
-                else if (sta == "notavailable")
+                else if (sta == "NOTAVAILABLE")
                 {
                     CurrentUser.Status = false;
                     var result = JsonConvert.SerializeObject(users);
