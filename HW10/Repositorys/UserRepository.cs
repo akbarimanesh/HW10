@@ -89,14 +89,27 @@ namespace HW10.Repositorys
             {
                 users = new List<User>();
             }
-             
+
             if (CurrentUser != null)
             {
+
                 CurrentUser = users.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
-                CurrentUser.Password = newpass;
-                var result = JsonConvert.SerializeObject(users);
-                File.WriteAllText(path, result + Environment.NewLine);
-                ColoredConsole.WriteLine($"{Green("Password changed successfully.")}");
+                if (CurrentUser == null)
+                {
+                    ColoredConsole.WriteLine($"{Red("old password is incorrect.")}");
+                }
+                else
+                {
+                    CurrentUser.Password = newpass;
+                    var result = JsonConvert.SerializeObject(users);
+                    File.WriteAllText(path, result + Environment.NewLine);
+                    ColoredConsole.WriteLine($"{Green("Password changed successfully.")}");
+
+
+
+                }
+
+
             }
 
             else
@@ -106,7 +119,7 @@ namespace HW10.Repositorys
             }
         }
 
-        public List<User> Search(User user,string txt)
+        public List<User> Search(User user, string txt)
         {
             var data = File.ReadAllText(path);
             var users = JsonConvert.DeserializeObject<List<User>>(data);
@@ -114,7 +127,7 @@ namespace HW10.Repositorys
             {
                 users = new List<User>();
             }
-            
+
             if (CurrentUser != null)
             {
                 CurrentUser = users.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
@@ -152,13 +165,13 @@ namespace HW10.Repositorys
             {
                 users = new List<User>();
             }
-           
+
             if (CurrentUser != null)
             {
                 CurrentUser = users.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
                 if (sta == "AVAILABLE")
                 {
-                   
+
                     CurrentUser.Status = true;
                     var result = JsonConvert.SerializeObject(users);
                     File.WriteAllText(path, result + Environment.NewLine);
