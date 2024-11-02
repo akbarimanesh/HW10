@@ -6,7 +6,13 @@ using Newtonsoft.Json;
 using System.Diagnostics.Metrics;
 using System.IO;
 using static Colors.Net.StringStaticMethods;
+using Dapper;
+using System.Data.SqlClient;
+using HW10.Queries;
+
+
 UserService userService = new UserService();
+
 User user = new User();
 while (true)
 {
@@ -22,31 +28,32 @@ while (true)
             user.Username = section[2];
             user.Password = section[4];
             userService.LoginUser(user);
-            
+          
+
         }
         catch (Exception ex)
         {
             ColoredConsole.WriteLine($"{Red("Should Enter The Command Register Like This: Login --username [username] --password [password]")}");
         }
-        
+
         Console.ReadKey();
     }
     if (com == "REGISTER")
     {
         try
         {
-            user.Id = userService.index();
+            
             user.Username = section[2];
             user.Password = section[4];
             userService.RegisterUser(user);
-           
+
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ColoredConsole.WriteLine($"{Red("Should Enter The Command Register Like This: Register --username [username] --password [password]")}");
 
         }
-        
+
         Console.ReadKey();
     }
 
@@ -60,13 +67,13 @@ while (true)
                 userService.Statususer(user, section[2]);
 
 
-                
+
             }
             else if (section[2] == "NOTAVAILABLE")
             {
 
                 userService.Statususer(user, section[2]);
-               
+
             }
         }
         catch (Exception ex)
@@ -82,8 +89,8 @@ while (true)
         try
         {
             var text = section[2];
-             userService.Searchuser(user,text);
-            
+            userService.Searchuser(user, text);
+
         }
 
         catch (Exception ex)
@@ -100,7 +107,7 @@ while (true)
             user.Password = section[2];
             var newpass = section[4];
             userService.Changepass(user, newpass);
-            
+
         }
         catch (Exception ex)
         {

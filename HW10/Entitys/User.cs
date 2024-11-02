@@ -11,6 +11,6 @@ namespace HW10.Entitys
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public bool Status { get; set; } = false;
+        public bool Status { get; set; } 
     }
 }
