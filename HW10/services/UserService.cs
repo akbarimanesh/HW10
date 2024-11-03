@@ -14,7 +14,7 @@ namespace HW10.services
         IUserRepository userrep;
         public UserService()
         {
-            userrep = new UserRepositoryDapper();
+            userrep = new UserRepositoryAdo();
         }
         public int index()
         {

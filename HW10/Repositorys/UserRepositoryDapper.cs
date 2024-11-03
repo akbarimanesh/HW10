@@ -50,7 +50,7 @@ namespace HW10.Repositorys
                 CurrentUser = con.QueryFirstOrDefault<User>(Queriesuser.GetById, new { Username = user.Username, Password = user.Password });
                 if (CurrentUser == null)
                 {
-                    con.Execute(Queriesuser.Create, new { user.Username, user.Password });
+                    con.Execute(Queriesuser.Create, new { Username= user.Username, Password=user.Password });
                     ColoredConsole.WriteLine($"{Green("You have successfully register.")}");
                 }
                 else ColoredConsole.WriteLine($"{Red("register failed! username already exists.")}");
